@@ -23,11 +23,16 @@ body {
 
 /* Header */
 header {
-    background-color: #a791f7;
+    background-color: #ffffff;
 }
 
 h1 {
     font-family: 'Barriecito', sans-serif;
+    font-size: 1.5em;
+    text-align: center;
+    letter-spacing: 0.1rem;
+    color: #9c84f3;
+    margin: 10px 0 10px 0;
 }
 
 /* Main content */
@@ -39,5 +44,5 @@ main {
 
 /* Footer */
 footer {
-    background-color: #a791f7;
+    background-color: #9c84f3;
 }
