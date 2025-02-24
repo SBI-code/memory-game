@@ -17,27 +17,27 @@ body {
     align-items: center;
     flex-direction: column;
     /* Generic project styles */
-    background-color: #ffffff;
+    background-color: #2E294E;
     font-family: 'Barriecito', sans-serif;
 }
 
 /* Header */
 header {
-    background-color: #ffffff;
+
 }
 
 h1 {
     font-family: 'Barriecito', sans-serif;
-    font-size: 1.5em;
+    font-size: 2em;
     text-align: center;
-    letter-spacing: 0.1rem;
-    color: #9c84f3;
+    letter-spacing: 0.3rem;
+    color: #ffffff;
     margin: 10px 0 10px 0;
 }
 
 /* Main content */
 main {
-    background-color: #ffffff;
+    background-color: #2E294E;
     /*Make main element take up extra space to push the footer down to the bottom of the page */
     flex: 1 0 auto;
 }
