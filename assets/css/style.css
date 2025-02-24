@@ -55,12 +55,6 @@ main {
     gap: 10px;
 }
 
-/* Footer */
-footer {
-    background-color: #ffffff;
-    color: #9c84f3;
-}
-
 /* Media query: tablets and larger (768px and up) */
 @media screen and (min-width: 768px) {
     /* Header */
