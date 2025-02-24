@@ -13,11 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let secondCard = null;
     let lockBoard = false;
 
-    // Card for each emoji for the div element and flips the card when clicked 
+    // Creates a card for each emoji for the div element and flips the card when clicked 
     cardsArray.forEach((emoji, index) => {
         const card = document.createElement("div");
         card.classList.add("card");
         card.dataset.emoji = emoji;
         card.addEventListener("click", flipCard);
         grid.appendChild(card);
-});
+    });
+})
