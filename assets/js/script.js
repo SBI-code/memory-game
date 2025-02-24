@@ -21,4 +21,25 @@ document.addEventListener("DOMContentLoaded", () => {
         card.addEventListener("click", flipCard);
         grid.appendChild(card);
     });
+
+    // Any element in the game that has been clicked will be teh first card and will flip displaying an emoji
+    function flipCard() {
+        if (lockBoard) return;
+        if (this === firstCard) return;
+
+        this.textContent = this.dataset.emoji;
+        this.classList.add("flipped");
+
+        if (!firstCard) {
+            firstCard = this;
+            return;
+        }
+
+        // Flips the second card and locks the game to prevent a third card being selected
+        secondCard = this;
+        lockBoard = true;
+        
+        //  Check if the cards match
+        checkMatch();
+    }
 })
