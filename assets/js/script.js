@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         grid.appendChild(card);
     });
 
-    // Any element in the game that has been clicked will be teh first card and will flip displaying an emoji
+    // Any element in the game that has been clicked will be the first card and will flip displaying an emoji
     function flipCard() {
         if (lockBoard) return;
         if (this === firstCard) return;
@@ -41,5 +41,20 @@ document.addEventListener("DOMContentLoaded", () => {
         
         //  Check if the cards match
         checkMatch();
+    }
+
+    // define checkMatch function, if both emojis are the same, reset board to restart the process, otherwise unflip the cards and reset board
+    function checkMatch() {
+        if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
+            resetBoard();
+        } else {
+            setTimeout(() => {
+                firstCard.textContent = "";
+                secondCard.textContent = "";
+                firstCard.classList.remove("flipped");
+                secondCard.classList.remove("flipped");
+                resetBoard();
+            }, 1000);
+        }
     }
 })
