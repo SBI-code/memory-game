@@ -44,7 +44,8 @@ main {
 
 /* Footer */
 footer {
-    background-color: #9c84f3;
+    background-color: #ffffff;
+    color: #9c84f3;
 }
 
 /* Media query: tablets and larger (768px and up) */
@@ -56,3 +57,4 @@ footer {
         width: fit-content;
     }
 }
+
