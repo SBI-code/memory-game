@@ -7,9 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // Shuffle the array items
     cardsArray.sort(() => Math.random() - 0.5);
 
-    // Selects the element ID gameGrid and store in the grid variable. Game start with both cards holding 'null' values. lockBoard is false allowing players to select cards. 
+    // Selects the element ID gameGrid and store in the grid variable. Game start with both cards holding 'null' values. lockBoard is false allowing players to select cards 
     const grid = document.getElementById("gameGrid");
     let firstCard = null;
     let secondCard = null;
     let lockBoard = false;
+
+    // Card for each emoji for the div element and flips the card when clicked 
+    cardsArray.forEach((emoji, index) => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.dataset.emoji = emoji;
+        card.addEventListener("click", flipCard);
+        grid.appendChild(card);
 });
