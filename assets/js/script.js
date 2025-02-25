@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Flips the second card and locks the game to prevent a third card being selected
         secondCard = this;
         lockBoard = true;
-        
+
         //  Check if the cards match
         checkMatch();
     }
