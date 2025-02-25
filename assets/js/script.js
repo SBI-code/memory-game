@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         checkMatch();
     }
 
-    // define checkMatch function, if both emojis are the same, reset board to restart the process, otherwise unflip the cards and reset board
+    // Define checkMatch function, if both emojis are the same, reset board to restart the process, otherwise unflip the cards and reset board
     function checkMatch() {
         if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
             resetBoard();
@@ -56,5 +56,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 resetBoard();
             }, 1000);
         }
+    }
+
+    // If first and second card return null values, board is not locked
+    function resetBoard() {
+        [firstCard, secondCard] = [null, null];
+        lockBoard = false;
     }
 })
