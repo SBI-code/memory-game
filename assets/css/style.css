@@ -30,7 +30,7 @@ h1 {
     margin: 20px 0 50px 0;
 }
 
-/* Main content */
+/* Body content */
 .game-container {
     display: flex;
     flex-direction: column;
@@ -60,6 +60,27 @@ h1 {
 
 .card.flipped {
     background-color: #2E294E;
+}
+
+/* Feat container general styles */
+
+#feat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* How to play button */
+#rules-button {
+    background-color: #F2E94E;
+    color: #000000;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Barriecito', sans-serif;
+    font-size: 16px;
+    margin: 20px 0;
 }
 
 /* Media query: tablets and larger (768px and up) */
