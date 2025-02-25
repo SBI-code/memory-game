@@ -64,3 +64,13 @@ document.addEventListener("DOMContentLoaded", () => {
         lockBoard = false;
     }
 })
+
+// Toggle text function - initial state of text is hidden, click once -> text appears, click again -> text hides
+function toggleText() {
+    const popup = document.getElementById('popupText');
+    if (popup.style.display === 'none' || popup.style.display === '') {
+        popup.style.display = 'block'; // Show the text
+    } else {
+        popup.style.display = 'none'; // Hide the text
+    }
+}

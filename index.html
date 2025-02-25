@@ -33,7 +33,40 @@
         <div id="feat-container">
             <div id="game-rules-button">
                 <!-- How to play button -->
-                <button id="rules-button" aria-label="Click for how to play instructions">How To Play</button>
+                <button id="rules-button" class="rules-button" onclick="toggleText()" aria-label="Click for how to play instructions">How To
+                    Play</button>
+                
+            </div>
+
+            <!-- -->
+            <div id="popupText">
+                <h2>🃏 How to Play the Memory Game 🃏</h2>
+                <p>Goal:
+                    Find all the matching pairs of cards with the fewest moves and in the shortest time!</p>
+                <br>
+                <h2>🔹Game Instructions:</h2>
+                <ol>
+                    <li>Start the Game:
+                        Click "Start" to begin. Cards will be placed face down in a grid.</li>
+                    <li>Flip Cards:
+                        Click on any card to flip it over and reveal the image.
+                        Then, click a second card to try and find its matching pair.</li>
+                    <li>Match or Mismatch:
+                        If the two cards match, they will stay face up.
+                        If they don’t match, they will flip back after a short delay.</li>
+                    <li>Keep Going:
+                        Continue flipping cards and finding pairs until all cards are matched.</li>
+                    <li>Win the Game:
+                        The game ends when all pairs are found.
+                        Check your total moves and time — can you beat your best score?</li>
+                </ol>
+                <br>
+                <h2>💡 Tips for Success:</h2>
+                <ol>
+                    <li>Focus on memorizing card positions after each flip.</li>
+                    <li>The fewer moves you make, the higher your score!</li>
+                    <li>Challenge yourself by improving your time with every game.</li>
+                </ol>
             </div>
         </div>
     </div>
