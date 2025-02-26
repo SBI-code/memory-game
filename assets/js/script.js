@@ -18,14 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let secondCard = null;
     let lockBoard = false;
 
-    // Creates a card for each emoji for the div element and flips the card when clicked 
+    // Creates a new board with a cleared game grid 
     function createBoard() {
-        grid.innerHTML = ""; // Clear grid
+        grid.innerHTML = "";
         matchedPairs = 0;
         score = 0;
         scoreContainer.innerText = score;
-        cardsArray.sort(() => Math.random() - 0.5); // Reshuffle
+        winnerModal.style.display = "none"; // Hide the modal on game start
+        cardsArray.sort(() => Math.random() - 0.5); // Reshuffle the array items
 
+        // Creates a card for each emoji for the div element and flips the card when clicked
         cardsArray.forEach((emoji, index) => {
             const card = document.createElement("div");
             card.classList.add("card");
@@ -34,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
             grid.appendChild(card);
         });
     }
-    
+
     // Any element in the game that has been clicked will be the first card and will flip displaying an emoji
     function flipCard() {
         if (lockBoard) return;
@@ -84,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (matchedPairs === emojis.length) {
             // All pairs matched
             setTimeout(() => {
-                winnerModal.style.display = "flex"; // Show winner message 
+                winnerModal.style.display = "flex"; // Show winner message modal
             }, 500);
         }
     }
@@ -95,12 +97,13 @@ document.addEventListener("DOMContentLoaded", () => {
         lockBoard = false;
     }
 
+    // At the end of the game, winner is announced and player restarts the game board
     window.restartGame = function () {
-        winnerModal.style.display = "none"; // Hide modal
-        createBoard(); // Reset the game
+        createBoard(); 
     };
-
-    createBoard(); // Initialise game
+    
+    // Initialise game
+    createBoard(); 
 })
 
 
