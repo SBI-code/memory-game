@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     const emojis = ["🚀", "🪐", "🌍", "🌌", "🔭", "🌕", "☄️", "🌠"];
 
+    const scoreContainer = document.getElementById('score');
+    let score = 0; // Initialise score
+
     // Create an array of pairs
     let cardsArray = emojis.concat(emojis);
 
@@ -46,8 +49,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Define checkMatch function, if both emojis are the same, reset board to restart the process, otherwise unflip the cards and reset board
     function checkMatch() {
         if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
+            // Match found, increase score
+            score++;
+            scoreContainer.innerText = score; // Update the score total
             resetBoard();
         } else {
+            // No match, flip the cards back over
             setTimeout(() => {
                 firstCard.textContent = "";
                 secondCard.textContent = "";
@@ -64,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         lockBoard = false;
     }
 })
+
 
 // Toggle text function - initial state of text is hidden, click once -> text appears, click again -> text hides
 function toggleText() {
