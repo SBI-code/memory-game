@@ -29,7 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
         grid.innerHTML = "";
         matchedPairs = 0; // Reset matched pairs to zero
         score = 0; // Reset score to zero
+        clearInterval(timerInterval); // Stop previous timer
         timeLeft = 60; // Reset timer to 60 seconds
+        timerContainer.innerText = timeLeft;
+        isTimerRunning = false; // Ensure timer starts fresh
         scoreContainer.innerText = score;
         winnerModal.style.display = "none"; // Hide the winner modal on game start
         gameOverModal.style.display = "none" // Hide the game over modal on game start
@@ -49,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Starts the countdown and minuses seconds, if it reaches zero before all the cards are matched, show game over message
     function startTimer() {
         if (!isTimerRunning) {
             isTimerRunning = true;
@@ -146,3 +150,6 @@ function toggleText() {
         popup.style.display = 'none'; // Hide the text
     }
 }
+
+document.getElementById("tryAgainButton").addEventListener("click", restartGame);
+document.getElementById("playAgainButton").addEventListener("click", restartGame);
