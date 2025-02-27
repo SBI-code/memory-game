@@ -2,9 +2,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const emojis = ["🚀", "🪐", "🌍", "🌌", "🔭", "🌕", "☄️", "🌠"];
 
     const scoreContainer = document.getElementById('score');
+    const timerContainer = document.getElementById("timer");
     const winnerModal = document.getElementById("winnerModal");
+    const gameOverModal = document.getElementById("gameOverModal");
+
     let score = 0; // Initialise score
     let matchedPairs = 0; // Track matched pairs
+    let timeLeft = 60; // 60 second timer
+    let timerInterval = null;
+    let isTimerRunning = false;
 
     // Create an array of pairs
     let cardsArray = emojis.concat(emojis);
@@ -21,11 +27,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // Creates a new board with a cleared game grid 
     function createBoard() {
         grid.innerHTML = "";
-        matchedPairs = 0;
-        score = 0;
+        matchedPairs = 0; // Reset matched pairs to zero
+        score = 0; // Reset score to zero
+        timeLeft = 60; // Reset timer to 60 seconds
         scoreContainer.innerText = score;
-        winnerModal.style.display = "none"; // Hide the modal on game start
+        winnerModal.style.display = "none"; // Hide the winner modal on game start
+        gameOverModal.style.display = "none" // Hide the game over modal on game start
         cardsArray.sort(() => Math.random() - 0.5); // Reshuffle the array items
+
+        // Reset timer and update the timer display
+        clearInterval(timerInterval);
+        isTimerRunning = false;
 
         // Creates a card for each emoji for the div element and flips the card when clicked
         cardsArray.forEach((emoji, index) => {
@@ -37,10 +49,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    function startTimer() {
+        if (!isTimerRunning) {
+            isTimerRunning = true;
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerContainer.innerText = timeLeft;
+
+                if (timeLeft <=0) {
+                    clearInterval(timerInterval);
+                    gameOverModal.style.display = "flex"; // Show Game Over message modal
+                }
+            }, 1000);
+        }
+    }
+
     // Any element in the game that has been clicked will be the first card and will flip displaying an emoji
     function flipCard() {
         if (lockBoard) return;
         if (this === firstCard) return;
+
+        startTimer(); // Start the countdown when the first move is made
 
         this.textContent = this.dataset.emoji;
         this.classList.add("flipped");
@@ -85,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function checkWin() {
         if (matchedPairs === emojis.length) {
             // All pairs matched
+            clearInterval(timerInterval); // Stop the timer when the game is won
             setTimeout(() => {
                 winnerModal.style.display = "flex"; // Show winner message modal
             }, 500);

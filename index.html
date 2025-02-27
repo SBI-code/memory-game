@@ -26,6 +26,9 @@
         <!-- Game score -->
         <h3>Score: <span id="score">0</span></h3>
 
+        <!-- Game timer -->
+        <h3>Time Left: <span id="timer">60</span> seconds</h3>
+
         <!-- Game container -->
         <div class="game-container">
             <div class="grid" id="gameGrid"></div>
@@ -75,6 +78,14 @@
                 <div class="modal-content">
                     <h2>🎉 Congratulations! You won the game! 🎉</h2>
                     <button onclick="restartGame()">Play Again</button>
+                </div>
+            </div>
+
+            <!-- Game over modal -->
+            <div id="gameOverModal" class="modal">
+                <div class="modal-content">
+                    <h2>⏳ Time’s Up! Game Over! ⏳</h2>
+                    <button onclick="restartGame()">Try Again</button>
                 </div>
             </div>
         </div>
