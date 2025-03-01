@@ -39,45 +39,50 @@
 
             <div id="game-rules-button">
                 <!-- How to play button -->
-                <button id="rules-button" class="rules-link" onclick="toggleText()" aria-label="Click for how to play instructions">How To
+                <button id="howToPlayButton" class="rules-link"
+                    aria-label="Click for how to play instructions">How To
                     Play</button>
-                
+
             </div>
 
-            <!-- Popup text -->
-            <div id="popupText">
-                <h2>🃏 How to Play the Memory Game 🃏</h2>
-                <p>Goal:
-                    Find all the matching pairs of cards with the fewest moves and in the shortest time!</p>
-                <br>
-                <h2>🔹Game Instructions:</h2>
-                <ol>
-                    <li>Start the Game:
-                        Begin the game by clicking any card to flip it over and reveal the image.</li>
-                    <li>Flip Cards: 
-                        Click a second card to try and find its matching pair.</li>
-                    <li>Match or Mismatch:
-                        If the two cards match, they will stay face up.
-                        If they don’t match, they will flip back.</li>
-                    <li>Keep Going:
-                        Continue flipping cards and finding pairs until all cards are matched.</li>
-                    <li>Win the Game:
-                        The game ends when all pairs are found or when the timer ends, which ever one happens first!
-                        Its a race against the timer to find all the matches -- can you find them all in time?</li>
-                </ol>
-                <br>
-                <h2>💡 Tips for Success:</h2>
-                <ol>
-                    <li>Focus on memorising card positions after each flip.</li>
-                    <li>Be quicker than the timer!</li>
-                </ol>
+            <!-- How to play modal -->
+            <div id="howToPlayModal" class="modal">
+                <div class="modal-content">
+                    <span id="closeHowToPlay" class="close">&times;</span>
+                    <h2>🃏 How to Play the Memory Game 🃏</h2>
+                    <p>Goal:
+                        Find all the matching pairs of cards with the fewest moves and in the shortest time!</p>
+                    <br>
+                    <h2>🔹Game Instructions:</h2>
+                    <ol>
+                        <li>Start the Game:
+                            Begin the game by clicking any card to flip it over and reveal the image.</li>
+                        <li>Flip Cards:
+                            Click a second card to try and find its matching pair.</li>
+                        <li>Match or Mismatch:
+                            If the two cards match, they will stay face up.
+                            If they don’t match, they will flip back.</li>
+                        <li>Keep Going:
+                            Continue flipping cards and finding pairs until all cards are matched.</li>
+                        <li>Win the Game:
+                            The game ends when all pairs are found or when the timer ends, which ever one happens first!
+                            Its a race against the timer to find all the matches -- can you find them all in time?</li>
+                    </ol>
+                    <br>
+                    <h2>💡 Tips for Success:</h2>
+                    <ol>
+                        <li>Focus on memorising card positions after each flip.</li>
+                        <li>Be quicker than the timer!</li>
+                    </ol>
+                </div>
             </div>
 
             <!-- Winner message modal -->
             <div id="winnerModal" class="modal">
                 <div class="modal-content">
                     <h2>🎉 Congratulations! You won the game! 🎉</h2>
-                    <button id="playAgainBtn" onclick="restartGame()" aria-label="Click to play again">Play Again</button>
+                    <button id="playAgainButton" onclick="restartGame()" aria-label="Click to play again">Play
+                        Again</button>
                 </div>
             </div>
 
@@ -85,7 +90,8 @@
             <div id="gameOverModal" class="modal">
                 <div class="modal-content">
                     <h2>⏳ Time’s Up! Game Over! ⏳</h2>
-                    <button id="tryAgainButton" onclick="restartGame()" aria-label="Click to try again">Try Again</button>
+                    <button id="tryAgainButton" onclick="restartGame()" aria-label="Click to try again">Try
+                        Again</button>
                 </div>
             </div>
         </div>
@@ -96,4 +102,4 @@
     <script src="assets/js/script.js" type="text/javascript"></script>
 </body>
 
-</html> 
+</html>

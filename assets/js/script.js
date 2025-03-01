@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const timerContainer = document.getElementById("timer");
     const winnerModal = document.getElementById("winnerModal");
     const gameOverModal = document.getElementById("gameOverModal");
+    const howToPlayModal = document.getElementById("howToPlayModal");
+    const howToPlayButton = document.getElementById("howToPlayButton");
+    const closeHowToPlay = document.getElementById("closeHowToPlay");
 
     let score = 0; // Initialise score
     let matchedPairs = 0; // Track matched pairs
@@ -12,8 +15,25 @@ document.addEventListener("DOMContentLoaded", () => {
     let timerInterval = null;
     let isTimerRunning = false;
 
+    // Open the modal when the "How to Play" button is clicked
+    howToPlayButton.addEventListener("click", () => {
+        howToPlayModal.style.display = "flex";
+    });
+
+    // Close the modal if user clicks on the X 
+    closeHowToPlay.addEventListener("click", () => {
+        howToPlayModal.style.display = "none";
+    });
+
+    // Close the modal if user clicks outside of it
+    window.addEventListener("click", (event) => {
+        if (event.target === howToPlayModal) {
+            howToPlayModal.style.display = "none";
+        }
+    });
+
     // Create an array of pairs
-    let cardsArray = emojis.concat(emojis);
+    const cardsArray = emojis.concat(emojis);
 
     // Shuffle the array items
     cardsArray.sort(() => Math.random() - 0.5);
@@ -60,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 timeLeft--;
                 timerContainer.innerText = timeLeft;
 
-                if (timeLeft <=0) {
+                if (timeLeft <= 0) {
                     clearInterval(timerInterval);
                     gameOverModal.style.display = "flex"; // Show Game Over message modal
                 }
@@ -133,23 +153,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // At the end of the game, winner is announced and player restarts the game board
     window.restartGame = function () {
-        createBoard(); 
+        createBoard();
     };
-    
+
     // Initialise game
-    createBoard(); 
+    createBoard();
 })
-
-
-// Toggle text function - initial state of text is hidden, click once -> text appears, click again -> text hides
-function toggleText() {
-    const popup = document.getElementById('popupText');
-    if (popup.style.display === 'none' || popup.style.display === '') {
-        popup.style.display = 'block'; // Show the text
-    } else {
-        popup.style.display = 'none'; // Hide the text
-    }
-}
 
 document.getElementById("tryAgainButton").addEventListener("click", restartGame);
 document.getElementById("playAgainButton").addEventListener("click", restartGame);
