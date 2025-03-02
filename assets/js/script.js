@@ -1,13 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
+    
     const emojis = ["🚀", "🪐", "🌍", "🌌", "🔭", "🌕", "☄️", "🌠"];
 
     const scoreContainer = document.getElementById('score');
     const timerContainer = document.getElementById("timer");
+
+    // Winner message modal
     const winnerModal = document.getElementById("winnerModal");
+
+    // Game over modal
     const gameOverModal = document.getElementById("gameOverModal");
+
+    // How to play modal and button
     const howToPlayModal = document.getElementById("howToPlayModal");
     const howToPlayButton = document.getElementById("howToPlayButton");
     const closeHowToPlay = document.getElementById("closeHowToPlay");
+
+    // Load game sound files
+    const cardFlipSound = new Audio("audio/cardflip.mp3");
+    const matchSound = new Audio("audio/match.mp3");
+    const mismatchSound = new Audio("audio/mismatch.mp3");
+    const gameOverSound = new Audio("audio/gameover.mp3");
+    const winSound = new Audio("audio/win.mp3");
 
     let score = 0; // Initialise score
     let matchedPairs = 0; // Track matched pairs
@@ -72,6 +86,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    function playSound(sound) {
+        sound.currentTime = 0; // Reset sound if it's already playing
+        sound.play();
+    }
+
     // Starts the countdown and minuses seconds, if it reaches zero before all the cards are matched, show game over message
     function startTimer() {
         if (!isTimerRunning) {
@@ -82,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
+                    playSound(gameOverSound); // Play game over sound
                     gameOverModal.style.display = "flex"; // Show Game Over message modal
                 }
             }, 1000);
@@ -92,6 +112,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function flipCard() {
         if (lockBoard) return;
         if (this === firstCard) return;
+
+        playSound(flipSound); // Play flip sound
 
         startTimer(); // Start the countdown when the first move is made
 
@@ -114,6 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Define checkMatch function, if both emojis are the same, reset board to restart the process, otherwise unflip the cards and reset board
     function checkMatch() {
         if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
+            playSound(matchSound); // Play match sound
             // Match found, increase score
             score++;
             matchedPairs++; // Increase matched pairs
@@ -123,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Check if all pairs are matched 
             checkWin();
         } else {
+            playSound(mismatchSound); // Play mismatch sound
             // No match, flip the cards back over
             setTimeout(() => {
                 firstCard.textContent = "";
@@ -140,6 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // All pairs matched
             clearInterval(timerInterval); // Stop the timer when the game is won
             setTimeout(() => {
+                playSound(winSound); // Play win sound
                 winnerModal.style.display = "flex"; // Show winner message modal
             }, 500);
         }
