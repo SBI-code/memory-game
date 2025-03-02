@@ -17,11 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeHowToPlay = document.getElementById("closeHowToPlay");
 
     // Load game sound files
-    const cardFlipSound = new Audio("audio/cardflip.mp3");
-    const matchSound = new Audio("audio/match.mp3");
-    const mismatchSound = new Audio("audio/mismatch.mp3");
-    const gameOverSound = new Audio("audio/gameover.mp3");
-    const winSound = new Audio("audio/win.mp3");
+    const cardFlipSound = new Audio("assets/audio/cardflip.mp3");
+    const matchSound = new Audio("assets/audio/match.mp3");
+    const mismatchSound = new Audio("assets/audio/mismatch.mp3");
+    const gameOverSound = new Audio("assets/audio/gameover.mp3");
+    const winSound = new Audio("assets/audio/win.mp3");
 
     let score = 0; // Initialise score
     let matchedPairs = 0; // Track matched pairs
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (lockBoard) return;
         if (this === firstCard) return;
 
-        playSound(flipSound); // Play flip sound
+        playSound(cardFlipSound); // Play flip sound
 
         startTimer(); // Start the countdown when the first move is made
 
