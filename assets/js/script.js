@@ -184,6 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // event listneer for mute toggle 
     let muteButton = document.getElementById('muteButton');
     muteButton.addEventListener('click', muteToggle);
+    
     /**
      * Mutes all audio. If already muted, unmutes all audio.
      */
