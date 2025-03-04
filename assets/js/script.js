@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     const emojis = ["🚀", "🪐", "🌍", "🌌", "🔭", "🌕", "☄️", "🌠"];
 
     const scoreContainer = document.getElementById('score');
@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeHowToPlay = document.getElementById("closeHowToPlay");
 
     // Load game sound files
-    const cardFlipSound = new Audio("assets/audio/cardflip.mp3");
     const matchSound = new Audio("assets/audio/match.mp3");
     const mismatchSound = new Audio("assets/audio/mismatch.mp3");
     const gameOverSound = new Audio("assets/audio/gameover.mp3");
@@ -112,8 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function flipCard() {
         if (lockBoard) return;
         if (this === firstCard) return;
-
-        playSound(cardFlipSound); // Play flip sound
 
         startTimer(); // Start the countdown when the first move is made
 

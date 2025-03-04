@@ -90,6 +90,13 @@ h1 {
     margin: 20px 0;
 }
 
+#muteButton {
+    font-size: 2rem;
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+}
+
 /* General modal styles */
 .modal {
     display: none;
