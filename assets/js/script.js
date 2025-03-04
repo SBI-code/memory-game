@@ -180,6 +180,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialise game
     createBoard();
+
+    // event listneer for mute toggle 
+    let muteButton = document.getElementById('muteButton');
+    muteButton.addEventListener('click', muteToggle);
+    /**
+     * Mutes all audio. If already muted, unmutes all audio.
+     */
+    function muteToggle() {
+        if (matchSound.muted != true) {
+            matchSound.muted = true;
+            mismatchSound.muted = true;
+            gameOverSound.muted = true;
+            winSound.muted = true;
+            document.getElementById('muteButton').innerHTML = "🔇";
+        } else {
+            matchSound.muted = false;
+            mismatchSound.muted = false;
+            gameOverSound.muted = false;
+            winSound.muted = false;
+            document.getElementById('muteButton').innerHTML = "🔊";
+        }
+    }
 })
 
 document.getElementById("tryAgainButton").addEventListener("click", restartGame);
