@@ -54,8 +54,6 @@ h1 {
 }
 
 .card {
-    width: 100px;
-    height: 100px;
     background-color: #E71D36;
     display: flex;
     justify-content: center;
@@ -161,16 +159,11 @@ h1 {
     background-color: #218838;
 }
 
-/* Media query: large or landscape phones (576px and up) */
-@media screen and (min-width: 576px) {
-    .grid {
-        max-width: 500px;
-    }
-
-    .card {
-        width: 80px;
-        height: 80px;
-        font-size: 1.5rem;
+/* Media query: tablets or phones (576px and down) */
+@media screen and (max-width: 576px) {
+    body {
+        width: fit-content;
+        padding: 0 20px;
     }
 }
 
@@ -183,12 +176,4 @@ h1 {
         position: relative;
         width: fit-content;
     }
-
-
-}
-
-/* Media query: laptops and larger (1020px and up) */
-@media screen and (min-width: 1020px) {
-
-
 }
