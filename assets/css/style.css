@@ -32,6 +32,10 @@ h1 {
 
 /* Body content */
 
+h2 {
+    text-align: center;
+}
+
 #game-and-feat h3 {
     font-size: 1.5em;
     text-align: center;
@@ -107,12 +111,14 @@ h1 {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.50);
-    justify-content: left;
     align-items: center;
 }
 
 /* Modal content */
 .modal-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     background-color: #F2E94E;
     margin: auto;
     padding: 10px;
@@ -122,16 +128,24 @@ h1 {
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     border-radius: 8px;
+    position: relative;
 }
 
-.modal-content p, li {
+.modal-content p,
+li {
     margin-left: 2rem;
-} 
+}
+
+#howToPlayModal {
+    text-align: left;
+}
 
 /* Close button */
 .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     color: #000000;
-    float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
@@ -139,8 +153,8 @@ h1 {
 
 .close:hover,
 .close:focus {
-  text-decoration: none;
-  cursor: pointer;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 /* Modal button */
@@ -149,7 +163,7 @@ h1 {
     color: white;
     border: none;
     padding: 10px 20px;
-    margin-top: 10px;
+    margin: 0 auto;
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
@@ -159,13 +173,21 @@ h1 {
     background-color: #218838;
 }
 
-/* Media query: tablets or phones (576px and down) */
-@media screen and (max-width: 576px) {
-    body {
-        width: fit-content;
-        padding: 0 20px;
+@media only screen and (min-width: 320px) and (max-width:800px) {
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 60px);
+        grid-template-rows: repeat(4, 60px);
+        gap: 6px;
+    }
+
+    .card {
+        font-size: 1em;
     }
 }
+
+/* Media query: tablets or phones (576px and down) */
+@media screen and (max-width: 576px) {}
 
 /* Media query: tablets and larger (768px and up) */
 @media screen and (min-width: 768px) {
