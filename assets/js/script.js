@@ -5,30 +5,51 @@ document.addEventListener("DOMContentLoaded", () => {
     const scoreContainer = document.getElementById('score');
     const timerContainer = document.getElementById("timer");
 
-    // Winner message modal
+    /**
+     * Winner message modal
+     */
     const winnerModal = document.getElementById("winnerModal");
 
-    // Game over modal
+    /**
+     * Game over modal 
+     */
     const gameOverModal = document.getElementById("gameOverModal");
 
-    // How to play modal and button
+    /**
+     * How to play modal, button and close functionality
+     */
     const howToPlayModal = document.getElementById("howToPlayModal");
     const howToPlayButton = document.getElementById("howToPlayButton");
     const closeHowToPlay = document.getElementById("closeHowToPlay");
 
-    // Load game sound files
+    /** 
+     * Load game sound files
+     */
     const matchSound = new Audio("assets/audio/match.mp3");
     const mismatchSound = new Audio("assets/audio/mismatch.mp3");
     const gameOverSound = new Audio("assets/audio/gameover.mp3");
     const winSound = new Audio("assets/audio/win.mp3");
 
-    let score = 0; // Initialise score
-    let matchedPairs = 0; // Track matched pairs
-    let timeLeft = 60; // 60 second timer
+    /**
+     * Start of the game, initialise the score
+     */
+    let score = 0;
+
+    /**
+     * Start of game, track matched pairs
+     */
+    let matchedPairs = 0;
+
+    /**
+     * Sets the timer for all games to 60 seconds
+     */
+    let timeLeft = 60;
     let timerInterval = null;
     let isTimerRunning = false;
 
-    // Open the modal when the "How to Play" button is clicked
+    /**
+     * Open the modal when the "How to Play" button is clicked
+     */
     howToPlayButton.addEventListener("click", () => {
         howToPlayModal.style.display = "flex";
     });
@@ -45,37 +66,66 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Create an array of pairs
+    /**
+     * Create an array of pairs
+     */
     const cardsArray = emojis.concat(emojis);
 
-    // Shuffle the array items
+    /**
+     * Shuffle the array items 
+     */
     cardsArray.sort(() => Math.random() - 0.5);
 
-    // Selects the element ID gameGrid and store in the grid variable. Game start with both cards holding 'null' values. lockBoard is false allowing players to select cards 
+    /**
+     * Selects the element ID gameGrid and stores in the grid variable 
+     * Game start with both cards holding 'null' values
+     * LockBoard is false allowing players to select cards
+     */
     const grid = document.getElementById("gameGrid");
     let firstCard = null;
     let secondCard = null;
     let lockBoard = false;
 
-    // Creates a new board with a cleared game grid 
+    /**
+     * Creates a new board with a cleared game grid, resets score, restarts timer
+     */
     function createBoard() {
         grid.innerHTML = "";
-        matchedPairs = 0; // Reset matched pairs to zero
-        score = 0; // Reset score to zero
-        clearInterval(timerInterval); // Stop previous timer
-        timeLeft = 60; // Reset timer to 60 seconds
+        matchedPairs = 0;
+        score = 0;
+        /**
+         * Stop previous timer
+         */
+        clearInterval(timerInterval);
+        timeLeft = 60;
         timerContainer.innerText = timeLeft;
-        isTimerRunning = false; // Ensure timer starts fresh
+        /**
+         * Ensure timer starts fresh
+         */
+        isTimerRunning = false;
         scoreContainer.innerText = score;
-        winnerModal.style.display = "none"; // Hide the winner modal on game start
-        gameOverModal.style.display = "none" // Hide the game over modal on game start
-        cardsArray.sort(() => Math.random() - 0.5); // Reshuffle the array items
+        /**
+         * Hide the winner modal on game start
+         */
+        winnerModal.style.display = "none";
+        /**
+         * Hide the game over modal on game start
+         */
+        gameOverModal.style.display = "none"
+        /**
+         * Reshuffle the array items
+         */
+        cardsArray.sort(() => Math.random() - 0.5);
 
-        // Reset timer and update the timer display
+        /**
+         * Reset timer and update the timer display
+         */
         clearInterval(timerInterval);
         isTimerRunning = false;
 
-        // Creates a card for each emoji for the div element and flips the card when clicked
+        /**
+         * Creates a card for each emoji for the div element and flips the card when clicked
+         */
         cardsArray.forEach((emoji, index) => {
             const card = document.createElement("div");
             card.classList.add("card");
@@ -85,12 +135,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    /**
+     * Plays a sound file when called
+     */
     function playSound(sound) {
-        sound.currentTime = 0; // Reset sound if it's already playing
+        /**
+         * Reset sound if it's already playing
+         */
+        sound.currentTime = 0;
         sound.play();
     }
 
-    // Starts the countdown and minuses seconds, if it reaches zero before all the cards are matched, show game over message
+    /**
+     * Starts the countdown and minuses seconds, 
+     * if it reaches zero before all the cards are matched, 
+     * show game over message
+     */
     function startTimer() {
         if (!isTimerRunning) {
             isTimerRunning = true;
@@ -100,19 +160,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
-                    playSound(gameOverSound); // Play game over sound
-                    gameOverModal.style.display = "flex"; // Show Game Over message modal
+                    playSound(gameOverSound);
+                    gameOverModal.style.display = "flex";
                 }
             }, 1000);
         }
     }
 
-    // Any element in the game that has been clicked will be the first card and will flip displaying an emoji
+    /**
+     * Any element in the game that has been clicked will be the first card and will flip displaying an emoji
+     */
     function flipCard() {
         if (lockBoard) return;
         if (this === firstCard) return;
 
-        startTimer(); // Start the countdown when the first move is made
+        startTimer();
 
         this.textContent = this.dataset.emoji;
         this.classList.add("flipped");
@@ -122,15 +184,22 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // Flips the second card and locks the game to prevent a third card being selected
+        /**
+         * Flips the second card and locks the game to prevent a third card being selected
+         */ 
         secondCard = this;
         lockBoard = true;
 
-        //  Check if the cards match
+        /**
+         * Check if the cards match
+         */  
         checkMatch();
     }
 
-    // Define checkMatch function, if both emojis are the same, reset board to restart the process, otherwise unflip the cards and reset board
+    /**
+     * Define checkMatch function, if both emojis are the same, 
+     * reset board to restart the process, otherwise unflip the cards and reset board
+     */ 
     function checkMatch() {
         if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
             playSound(matchSound); // Play match sound
@@ -184,7 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // event listneer for mute toggle 
     let muteButton = document.getElementById('muteButton');
     muteButton.addEventListener('click', muteToggle);
-    
+
     /**
      * Mutes all audio. If already muted, unmutes all audio.
      */
