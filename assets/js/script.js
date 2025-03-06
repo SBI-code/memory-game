@@ -197,23 +197,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /**
-     * Define checkMatch function, if both emojis are the same, 
+     * Define checkMatch function, if both emojis are the same increase the score and 
      * reset board to restart the process, otherwise unflip the cards and reset board
      */ 
     function checkMatch() {
         if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
-            playSound(matchSound); // Play match sound
-            // Match found, increase score
+            playSound(matchSound);
             score++;
-            matchedPairs++; // Increase matched pairs
-            scoreContainer.innerText = score; // Update the score total
+            matchedPairs++;
+            /**
+             * Update the score total
+             */ 
+            scoreContainer.innerText = score; 
             resetBoard();
 
-            // Check if all pairs are matched 
+            /**
+             * Check if all pairs are matched
+             */  
             checkWin();
         } else {
-            playSound(mismatchSound); // Play mismatch sound
-            // No match, flip the cards back over
+            playSound(mismatchSound);
+            /** 
+             * No match, flip the cards back over
+             */
             setTimeout(() => {
                 firstCard.textContent = "";
                 secondCard.textContent = "";
@@ -224,33 +230,40 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Check if player has won
+    /**
+     * Check if player has won with all pairs matched,
+     * stop the timer and show winner message
+     */ 
     function checkWin() {
         if (matchedPairs === emojis.length) {
-            // All pairs matched
-            clearInterval(timerInterval); // Stop the timer when the game is won
+            clearInterval(timerInterval); 
             setTimeout(() => {
-                playSound(winSound); // Play win sound
-                winnerModal.style.display = "flex"; // Show winner message modal
+                playSound(winSound); 
+                winnerModal.style.display = "flex"; 
             }, 500);
         }
     }
 
-    // If first and second card return null values, board is not locked
+    /**
+     * If first and second card return null values, board is not locked
+     */ 
     function resetBoard() {
         [firstCard, secondCard] = [null, null];
         lockBoard = false;
     }
 
-    // At the end of the game, winner is announced and player restarts the game board
+    /**
+     * At the end of the game, winner is announced and player restarts the game board
+     */ 
     window.restartGame = function () {
         createBoard();
     };
 
-    // Initialise game
     createBoard();
 
-    // event listneer for mute toggle 
+    /**
+     * Event listener for mute toggle 
+     */ 
     let muteButton = document.getElementById('muteButton');
     muteButton.addEventListener('click', muteToggle);
 
@@ -274,5 +287,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 })
 
+/**
+ * Try again and play again button refernces to HTML to restart the game
+ */
 document.getElementById("tryAgainButton").addEventListener("click", restartGame);
 document.getElementById("playAgainButton").addEventListener("click", restartGame);
