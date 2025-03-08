@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const gameOverSound = new Audio("assets/audio/gameover.mp3");
     const winSound = new Audio("assets/audio/win.mp3");
 
-    // Start of the game, initialise the score
+    // Start of the game, Initialize the score
     let score = 0;
 
     // Start of game, track matched pairs
@@ -246,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
     muteButton.addEventListener('click', muteToggle);
 
     /**
-     * Mutes all audio. If already muted, unmutes all audio.
+     * Mutes all audio. If already muted, unmute all audio.
      */
     function muteToggle() {
         if (matchSound.muted != true) {
@@ -265,6 +265,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Try again and play again button refernces to HTML to restart the game
+// Try again and play again button references to HTML to restart the game
 document.getElementById("tryAgainButton").addEventListener("click", restartGame);
 document.getElementById("playAgainButton").addEventListener("click", restartGame);
