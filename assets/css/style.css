@@ -180,7 +180,6 @@ li {
     background-color: #218838;
 }
 
-
 /* Media query: tablets or phones (600px and down) */
 @media screen and (max-width: 600px) {
     .grid {
