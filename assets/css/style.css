@@ -74,8 +74,8 @@ h2 {
 /* Feat container general styles */
 
 #feat-container {
-    display: flex;
-    flex-direction: column;
+    display: flex; 
+    justify-content: space-evenly;
     align-items: center;
 }
 
