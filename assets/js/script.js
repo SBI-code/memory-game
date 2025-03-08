@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const howToPlayModal = document.getElementById("howToPlayModal");
     const howToPlayButton = document.getElementById("howToPlayButton");
     const closeHowToPlay = document.getElementById("closeHowToPlay");
- 
+
     // Load game sound files
     const matchSound = new Audio("assets/audio/match.mp3");
     const mismatchSound = new Audio("assets/audio/mismatch.mp3");
@@ -31,6 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let timeLeft = 60;
     let timerInterval = null;
     let isTimerRunning = false;
+
+    // 
+    document.getElementById("resetGameButton").addEventListener("click", resetGame);
 
     // Open the modal when the "How to Play" button is clicked
     howToPlayButton.addEventListener("click", () => {
@@ -84,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Reshuffle the array items        
         cardsArray.sort(() => Math.random() - 0.5);
-        
+
         // Reset timer and update the timer display
         clearInterval(timerInterval);
         isTimerRunning = false;
@@ -97,6 +100,34 @@ document.addEventListener("DOMContentLoaded", () => {
             card.addEventListener("click", flipCard);
             grid.appendChild(card);
         });
+    }
+
+    // Event listener for the reset game button
+    document.getElementById("resetGameButton").addEventListener("click", resetGame);
+    
+    /**
+     * Reset game functionality
+     */
+    function resetGame() {
+        // Reset timer
+        clearInterval(timerInterval);
+        timeLeft = 60;
+        timerContainer.innerText = timeLeft;
+        isTimerRunning = false;
+
+        // Reset score
+        score = 0;
+        scoreContainer.innerText = score;
+
+        // Reset matched pairs
+        matchedPairs = 0;
+
+        // Hide modals if they were shown
+        winnerModal.style.display = "none";
+        gameOverModal.style.display = "none";
+
+        // Reshuffle and reset the game board
+        createBoard();
     }
 
     /**
@@ -155,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
      * Define checkMatch function, if both emojis are the same increase 
      * the score and reset board to restart the process, otherwise unflip 
      * the cards and reset board
-     */ 
+     */
     function checkMatch() {
         if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
             playSound(matchSound);
@@ -163,14 +194,14 @@ document.addEventListener("DOMContentLoaded", () => {
             matchedPairs++;
 
             // Update the score total 
-            scoreContainer.innerText = score; 
+            scoreContainer.innerText = score;
             resetBoard();
 
             // Check if all pairs are matched  
             checkWin();
         } else {
             playSound(mismatchSound);
- 
+
             // No match, flip the cards back over
             setTimeout(() => {
                 firstCard.textContent = "";
@@ -185,20 +216,20 @@ document.addEventListener("DOMContentLoaded", () => {
     /**
      * Check if player has won with all pairs matched,
      * stop the timer and show winner message
-     */ 
+     */
     function checkWin() {
         if (matchedPairs === emojis.length) {
-            clearInterval(timerInterval); 
+            clearInterval(timerInterval);
             setTimeout(() => {
-                playSound(winSound); 
-                winnerModal.style.display = "flex"; 
+                playSound(winSound);
+                winnerModal.style.display = "flex";
             }, 500);
         }
     }
 
     /**
      * If first and second card return null values, board is not locked
-     */ 
+     */
     function resetBoard() {
         [firstCard, secondCard] = [null, null];
         lockBoard = false;

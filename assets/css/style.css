@@ -79,6 +79,19 @@ h2 {
     align-items: center;
 }
 
+/* Reset game button */
+#resetGameButton {
+    background-color: #a7ffba;
+    color: #000000;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Barriecito', sans-serif;
+    font-size: 16px;
+    margin: 20px 0;
+}
+
 /* How to play button */
 #howToPlayButton {
     background-color: #F2E94E;
