@@ -74,7 +74,7 @@ h2 {
 /* Feat container general styles */
 
 #feat-container {
-    display: flex; 
+    display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
@@ -195,6 +195,12 @@ li {
 
 /* Media query: tablets or phones (600px and down) */
 @media screen and (max-width: 600px) {
+    /* h3 elements */
+    #game-and-feat h3 {
+        font-size: 1.2em;
+    }
+
+    /* Game grid */
     .grid {
         display: grid;
         grid-template-columns: repeat(4, 70px);
@@ -205,6 +211,19 @@ li {
     .card {
         font-size: 1.6em;
     }
+
+    /* Reset game button */
+    #resetGameButton {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    /* How to play button */
+    #howToPlayButton {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
 }
 
 /* Media query: tablets and larger (768px and up) */
@@ -222,25 +241,25 @@ li {
         display: grid;
         grid-template-columns: repeat(4, 100px);
         grid-template-rows: repeat(4, 100px);
-        gap: 10px; 
+        gap: 10px;
     }
 
-
     .card {
-        font-size: 2.2em; 
+        font-size: 2.2em;
     }
 }
 
 /* Media query: desktop (1600px and up) */
 @media screen and (min-width: 1600px) {
+    /* Game grid */
     .grid {
         display: grid;
         grid-template-columns: repeat(4, 120px);
         grid-template-rows: repeat(4, 120px);
-        gap: 12px; 
+        gap: 12px;
     }
 
     .card {
-        font-size: 2.5em; 
+        font-size: 2.5em;
     }
 }
