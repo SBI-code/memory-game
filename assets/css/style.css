@@ -191,7 +191,7 @@ li {
     }
 
     .card {
-        font-size: 1em;
+        font-size: 1.6em;
     }
 }
 
@@ -205,6 +205,7 @@ li {
         width: fit-content;
     }
 
+    /* Game grid */
     .grid {
         display: grid;
         grid-template-columns: repeat(4, 100px);
@@ -212,7 +213,22 @@ li {
         gap: 10px; 
     }
 
+
     .card {
-        font-size: 1.5em; 
+        font-size: 2.2em; 
+    }
+}
+
+/* Media query: desktop (1600px and up) */
+@media screen and (min-width: 1600px) {
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 120px);
+        grid-template-rows: repeat(4, 120px);
+        gap: 12px; 
+    }
+
+    .card {
+        font-size: 2.5em; 
     }
 }
