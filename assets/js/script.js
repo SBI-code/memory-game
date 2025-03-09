@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("resetGameButton").addEventListener("click", resetGame);
     
     /**
-     * Reset game functionality
+     * Reset game functionality at any point in an active game
      */
     function resetGame() {
         // Reset timer
